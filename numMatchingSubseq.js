@@ -1,6 +1,6 @@
 import { strict as assert } from "node:assert";
 
-const numMatchingSubseq = function (s, words) {
+function numMatchingSubseq(s, words) {
   let result = 0;
   const map = new Map();
   
@@ -15,7 +15,7 @@ const numMatchingSubseq = function (s, words) {
   return result;
 };
 
-const isSubseq = function (s, w) {
+function isSubseq(s, w) {
   let i = -1;
 
   for (const c of w) {
@@ -36,7 +36,7 @@ const tests = [
   },
 ];
 
-for (let { s, words, answer } of tests) {
+for (const { s, words, answer } of tests) {
   const result = numMatchingSubseq(s, words);
   assert.equal(
     result,

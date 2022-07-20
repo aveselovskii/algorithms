@@ -5,7 +5,7 @@ function isBadVersion(n) {
   return n >= BAD;
 }
 
-const solution = function(n) {
+function solution(n) {
   let left = 1;
   let right = n;
 

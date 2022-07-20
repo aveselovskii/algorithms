@@ -1,4 +1,4 @@
-const searchInsert = function (nums, target) {
+function binarySearch(nums, target) {
   let left = 0;
   let right = nums.length - 1;
 
@@ -14,4 +14,4 @@ const searchInsert = function (nums, target) {
   return left;
 };
 
-console.log(searchInsert([1, 3, 5, 7], 5));
+console.log(binarySearch([1, 3, 5, 7], 5));

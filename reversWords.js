@@ -1,4 +1,4 @@
-function reverse(str) {
+function reversWords(str) {
   let word = "";
   let res = "";
 
@@ -14,6 +14,6 @@ function reverse(str) {
   return res + word;
 }
 
-const str = "Let's take LeetCode contest";
+const test = "Let's take LeetCode contest";
 
-console.log(reverse(str));
+console.log(reversWords(test));

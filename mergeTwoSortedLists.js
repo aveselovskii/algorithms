@@ -1,17 +1,9 @@
- /**
- * Definition for singly-linked list.
- * function ListNode(val, next) {
- *     this.val = (val===undefined ? 0 : val)
- *     this.next = (next===undefined ? null : next)
- * }
- */
-/**
- * @param {ListNode} l1
- * @param {ListNode} l2
- * @return {ListNode}
- */
+function ListNode(val, next) {
+  this.val = (val===undefined ? 0 : val)
+  this.next = (next===undefined ? null : next)
+}
 
-const mergeTwoLists = function(l1, l2) {
+function mergeTwoSortedLists(l1, l2) {
   const head = { val: -1, next: null };
   let l = head;
   
@@ -31,12 +23,7 @@ const mergeTwoLists = function(l1, l2) {
   return head.next;
 };
 
-function ListNode(val, next) {
-  this.val = (val===undefined ? 0 : val)
-  this.next = (next===undefined ? null : next)
-}
-
 const l1 = new ListNode(1, new ListNode(2, new ListNode(4)));
 const l2 = new ListNode(1, new ListNode(3, new ListNode(4)));
 
-mergeTwoLists(l1, l2);
+console.log(mergeTwoSortedLists(l1, l2));

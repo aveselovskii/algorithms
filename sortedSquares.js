@@ -1,8 +1,4 @@
-/**
- * @param {number[]} nums
- * @return {number[]}
- */
-var sortedSquares = function(nums) {
+function sortedSquares(nums) {
   const results = [];
   const ns = [];
 
@@ -17,13 +13,19 @@ var sortedSquares = function(nums) {
       results.push(square);
     }
   }
-  
+
   while (ns.length) {
     results.push(ns.pop());
   }
-  
+
   return results;
-};
-  
-console.log(sortedSquares([-4,-1,0,3,10]));
-console.log(sortedSquares([-7,-3,2,3,11]));
+}
+
+const tests = [
+  [-4, -1, 0, 3, 10],
+  [-7, -3, 2, 3, 11],
+];
+
+for (const nums of tests) {
+  console.log(sortedSquares(nums));
+}
