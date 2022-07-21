@@ -1,10 +1,8 @@
-function ListNode(val, next) {
-  this.val = val === undefined ? 0 : val;
-  this.next = next === undefined ? null : next;
-}
+import { getLinkedListByArray, printLinkedList } from "./common/utils.mjs";
 
 function removeNthFromEnd(head, n) {
-  let slow = (fast = head);
+  let slow = head;
+  let fast = head;
   for (let i = 0; i < n; i++) fast = fast.next;
   if (!fast) return head.next;
   while (fast.next) (fast = fast.next), (slow = slow.next);
@@ -14,11 +12,11 @@ function removeNthFromEnd(head, n) {
 
 const tests = [
   {
-    head: new ListNode(1, new ListNode(2, new ListNode(4))),
+    head: getLinkedListByArray([1, 2, 4]),
     n: 2,
   },
 ];
 
 for (const { head, n } of tests) {
-  console.log(removeNthFromEnd(head, n));
+  printLinkedList(removeNthFromEnd(head, n));
 }

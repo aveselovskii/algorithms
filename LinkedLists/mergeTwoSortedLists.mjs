@@ -1,12 +1,9 @@
-function ListNode(val, next) {
-  this.val = (val===undefined ? 0 : val)
-  this.next = (next===undefined ? null : next)
-}
+import { getLinkedListByArray, printLinkedList } from "./common/utils.mjs";
 
 function mergeTwoSortedLists(l1, l2) {
   const head = { val: -1, next: null };
   let l = head;
-  
+
   while (l1 && l2) {
     if (l1.val < l2.val) {
       l.next = l1;
@@ -19,11 +16,11 @@ function mergeTwoSortedLists(l1, l2) {
   }
 
   l.next = l1 || l2;
-         
+
   return head.next;
-};
+}
 
-const l1 = new ListNode(1, new ListNode(2, new ListNode(4)));
-const l2 = new ListNode(1, new ListNode(3, new ListNode(4)));
+const l1 = getLinkedListByArray([1, 2, 4]);
+const l2 = getLinkedListByArray([1, 3, 4]);
 
-console.log(mergeTwoSortedLists(l1, l2));
+printLinkedList(mergeTwoSortedLists(l1, l2));
