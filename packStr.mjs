@@ -1,12 +1,17 @@
 function packStr(str) {
-  const map = str
-    .split("")
-    .reduce((acc, c) => acc.set(c, (acc.get(c) || 0) + 1), new Map());
+  const map = new Map();
+  
+  for (const char of str) {
+    map.set(char, (map.get(char) || 0) + 1);
+  }
 
-  return Array.from(map.entries()).reduce(
-    (acc, e) => acc + e[0] + (e[1] === 1 ? "" : e[1]),
-    ""
-  );
+  let result = "";
+
+  for (const [char, count] of map) {
+    result += `${count === 1 ? '' : count}${char}`;
+  }
+
+  return result;
 };
 
 const tests = ["aaabbccccc", "abbc", "a"];
