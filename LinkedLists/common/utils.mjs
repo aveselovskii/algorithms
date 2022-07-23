@@ -17,10 +17,12 @@ function getLinkedListByArray(array) {
 
 function printLinkedList(head) {
   let current = head;
+  let result = [];
   while (current) {
-    console.log(current.val);
+    result.push(current.val);
     current = current.next;
   }
+  console.log(result);
 }
 
 export {
