@@ -1,41 +1,36 @@
-import { ListNode } from "./common/entries.mjs";
 import { getLinkedListByArray, printLinkedList } from "./common/utils.mjs";
 
 function reverseBetween(head, left, right) {
-  if (left === right) return head;
+  let start = head, cur = head;
+  let i = 1;
 
-  let prevHead = new ListNode(-1, head);
-  let beforeLeft = prevHead;
-  let beforePointer = null;
-  
-  for (let i = 0; i < left - 1; i++) {
-    beforeLeft = beforeLeft.next;
+  while (i < left) {
+    start = cur;
+    cur = cur.next;
+    i++;
   }
 
-  beforePointer = beforeLeft.next;
+  let prev = null, tail = cur;
 
-  for (let i = 0; i < right - left; i++) {
-    insert(beforeLeft, beforePointer);
+  while (i <= right) {
+    let next = cur.next;
+    cur.next = prev;
+    prev = cur;
+    cur = next;
+    i++;
   }
 
-  return prevHead.next;
-}
+  start.next = prev;
+  tail.next = cur;
 
-function insert(beforeDist, beforeSource) {
-  const source = beforeSource.next;
-  const dist = beforeDist.next;
-  const afterSource = source.next;
-  
-  beforeSource.next = afterSource;
-  beforeDist.next = source;
-  source.next = dist;
+  return left === 1 ? prev : head;
 }
 
 const tests = [
   {
     params: {
       head: getLinkedListByArray([1, 2, 3, 4, 5]),
-      left: 1,
+      left: 2,
       right: 4,
     },
     answer: [1, 4, 3, 2, 5],
