@@ -1,43 +1,43 @@
 function wordSubsets(words1, words2) {
-  const subsetMap = new Map();
-
-  for (const word2 of words2) {
-    const word2Map = countCharactersToMap(word2);
-
-    for (const [c, count] of word2Map) {
-      subsetMap.set(c, Math.max(subsetMap.get(c) || 0, count));
-    }
+  const subset = Array(26).fill(0);
+  
+  for (let i = 0; i < words2.length; i++) {
+      const tmp = count(words2[i]);
+      
+      for (let j = 0; j < tmp.length; j++) {
+          subset[j] = Math.max(subset[j], tmp[j])
+      }
   }
-
+  
   const result = [];
+  
+  for (let i = 0; i < words1.length; i++) {
+      const tmp = count(words1[i]);
 
-  for (const word1 of words1) {
-    const word1Map = countCharactersToMap(word1);
-
-    if (checkWordSubsetByMap(word1Map, subsetMap)) {
-      result.push(word1);
-    }
+      if (isSubset(tmp, subset)) {
+          result.push(words1[i]);
+      }
   }
-
+  
   return result;
-}
+};
 
-function countCharactersToMap(word) {
-  const map = new Map();
-
-  for (const c of word) {
-    map.set(c, (map.get(c) || 0) + 1);
+function count(word) {
+  const arr = Array(26).fill(0);
+  
+  for (let i = 0; i < word.length; i++) {
+      arr[word.charCodeAt(i) - 97] += 1;
   }
 
-  return map;
-}
+  return arr;
+};
 
-function checkWordSubsetByMap(wordMap, subsetMap) {
-  for (const [c, count] of subsetMap) {
-    if ((wordMap.get(c) || 0) < count) {
-      return false;
-    }
+function isSubset(word, subset) {
+  for (let i = 0; i < word.length; i++) {
+      if (word[i] < subset[i]) {
+          return false;
+      }
   }
 
   return true;
-}
+};
